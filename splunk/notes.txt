@@ -1,0 +1,110 @@
+You can feed the machine data to Splunk, which will do the dirty work(data processing) for you. 
+Once it processes and extracts the relevant data, you will be able to easily locate where and what the problems were.
+
+Splunk started off this way, but it became more prominent with the onset of Big Data. 
+Since Splunk can store and process large amounts of data, data analysts like myself started feeding big data to Splunk for analysis. 
+
+Splunk is a software platform to search, analyze and visualize the machine-generated data gathered from the websites, applications, sensors, devices etc.
+which make up your IT infrastructure and business.
+
+Your input data can be in any format for e.g. .csv, or json or other formats
+You can configure Splunk to give Alerts / Events notification at the onset of a machine state
+You can accurately predict the resources needed for scaling up the infrastructure
+You can create knowledge objects for Operational Intelligence
+
+Different Stages In Data Pipeline
+=======================================
+
+Data Input stage:
+--------------------
+Splunk software consumes the raw data stream from its source, breaks it into 64K blocks, and annotates each block with metadata keys.
+
+Data Storage stage:
+--------------------
+Data storage consists of two phases: Parsing and Indexing.
+In Parsing phase, Splunk software examines, analyzes, and transforms the data to extract only the relevant information. This is also known as event processing. 
+It is during this phase that Splunk software breaks the data stream into individual events. 
+The parsing phase has many sub-phases:
+	Breaking the stream of data into individual lines
+	Identifying, parsing, and setting timestamps
+	Annotating individual events with metadata copied from the source-wide keys
+	Transforming event data and metadata according to regex transform rules
+In Indexing phase, Splunk software writes parsed events to the index on disk. It writes both compressed raw data and the corresponding index file. 
+The benefit of Indexing is that the data can be easily accessed during searching.
+
+Data Searching Stage:
+-------------------------
+This stage controls how the user accesses, views, and uses the indexed data. As part of the search function, Splunk software stores user-created knowledge objects, 
+such as reports, event types, dashboards, alerts and field extractions. 
+
+
+Splunk Components:
+=========================
+
+Splunk Forwarder is the component which you have to use for collecting the logs. Suppose, you want to collect logs from a remote machine, 
+then you can accomplish that by using Splunk’s remote forwarders which are independent of the main Splunk instance.
+
+Indexer is the Splunk component which you will have to use for indexing and storing the data coming from the forwarder. 
+Splunk instance transforms the incoming data into events and stores it in indexes for performing search operations efficiently. 
+
+Search head is the component used for interacting with Splunk. It provides a graphical user interface to users for performing various operations. 
+You can search and query the data stored in the Indexer by entering search words and you will get the expected result.
+
+Splunk Use Case:
+======================
+
+Project Statement: Create data Models to solve the Big Data challenge of Domino’s Pizza.
+
+All of us are familiar with Domino’s Pizza. With outlets in 81 countries, it is one of the largest pizza chains in the world. 
+First of all, do you know how they collect data in real time from several touch points? Secondly, how do they examine real-time data globally to 
+improve their customer performance?
+
+Data models are ideal in such a scenario since they help in organizing and managing huge data in a structured manner.
+
+For the Domino’s example, it will return a JSON file for the “Domino’s Data” data model. 
+It has the model ID “Splunk Data Model Tutorial”. Now, let us have a look at how data models structure the data:
+
+In this example, if you send raw data to Splunk, the Data Model helps you create the structure by representing it in a JSON.
+
+As you can see from the above image, there is an Object Name List that contains five subsets: Customer errors, failed orders, telephone orders, 
+website orders and promotional offers.
+The first subset, ‘Customer errors’ contains all the error data that customers face while processing an order.
+The second subset, ‘failed order’ contains all the relevant data that deals with failed orders.
+The third subset, ‘telephone order’ contains data that are processed via telephone. ‘Website orders’ will collect data ordered via domino’s website and the fifth subset ‘promotional offers’ deals with all the coupons and offers from Domino’s.
+
+As data model divides the data into various subsets, it brings clarity to your data to help you analyze it in a hierarchical format, 
+thereby solving Domino’s Big Data Challenge.
+
+Splunk Alert:
+================
+
+Let’s consider a situation where you have a real-time application that needs to be up and running all the time. 
+If it crashes or an error occurs during the operation, the problem needs to be identified and fixed immediately.
+
+Alerts are used to monitor your events and perform actions when pre-defined conditions occur.
+Alerts are triggered based on search results and user-defined conditions.
+Alerts use saved searches to look for events in real time or at a scheduled time.
+There is a set of alert actions that helps you get notifications about a particular event. Alert action refers to the response that occurs when an alert is triggered. Some of the main alert actions are:
+	Email notifications: Send an email notification to specified recipients
+	Run scripts: Invoke a custom script
+	Send log events: Send log event to Splunk receiver endpoint
+	Webhook: Generic HTTP POST to a specified URL.
+
+Scheduled Alert: Suppose you belong to a retail firm and need to know the sales status at the end of every day, you can create a scheduled alert which 
+		will notify the total sales at 12 AM every day. This type of an alert can be used whenever an immediate response to an event is not required.
+
+Real-time Alert: This type of an alert is used whenever an immediate response to an event is required. 
+		As I have mentioned earlier, real-time alerts are further classified into per-result alert and rolling window alert which are explained below:
+
+		Per-result Alert: Let us take a scenario where a networking website admin wants to know whenever the website is down with error ‘500’. 
+                   Here, the admin can choose the per-result trigger condition so that every failed attempt can be tracked. 
+		   Per-result alert type can be used when you want a notification in real-time whenever the search returns a result that matches the search condition.
+		Rolling window Alert: Imagine you need to create an alert which notifies if the person has 5 consecutive failed login attempts in a span of 15 minutes.
+                   This can be done using this real-time alert with rolling time window triggering. It is used to monitor the results in a specific time interval 
+                   like every 30 minutes or 1 hour whenever it matches the search condition.
+
+
+
+
+
+
