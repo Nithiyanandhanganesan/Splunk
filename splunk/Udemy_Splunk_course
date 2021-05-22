@@ -1,0 +1,53 @@
+docs.splunk.com/Documentation
+
+There are three types of Splunk deployment models:
+  - Single instance
+  - Distributed
+  - Splunk in the Cloud
+
+Stages:
+  - Data Input
+  - Parsing and indexing
+  - searching
+
+Deployment scenario:
+  - Departmental Deployment
+       - Single search head/Indexer
+       - Up to 10 forwarder
+       - appropriate for 10 customers
+
+  - Small Enterprise Deployment
+       - Single search head
+       - 2 to 3 Indexer
+       - 100 to 200 forwarder
+
+  -  Large Enterprise Deployment
+       - Search head clusters
+       - Indexer clusters
+       - Thousand of forwarders
+       - Data gets replicated in the indexer clusters. [Index replication]
+       - Continue to search in case of any failure. It has auto-failover.
+  - Cloud Deployment
+       - Self service
+         - 20 gb data ingestion
+         - No AD/SSO
+         - 20 concurrent searches
+      - Managed
+        - custom configuration
+
+
+How Splunk Stores Data:
+   - Splunk transforms the incoming data into events and stores it in indexes.
+   - Event is single row of Data
+   - data will be in key=value format.
+   - splunk adds details fields to all events which is timestamps, host, source and source types.
+   - Splunk stores the indexed data in buckets:
+      - Hot     - newly indexed data
+      - Warm    - no active writing
+      - Cold
+      - Frozen  - archival
+      - Thawed  - restore from archive
+
+   - $SPLUNK/var/lib/splunk/defaultdb/db/*    [Hot,Warm]
+   - $SPLUNK/var/lib/splunk/defaultdb/colddb/*   [Cold]
+   - $SPLUNK/var/lib/splunk/defaultdb/thaweddb/*  [Thawed]
